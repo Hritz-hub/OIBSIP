@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Temperature Converter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Temperature Converter</h1>
+
+    <label for="temperature">Enter Temperature:</label>
+    <input type="number" id="temperature" placeholder="e.g. 100">
+
+    <label for="unit">Select Unit:</label>
+    <select id="unit">
+      <option value="celsius">Celsius</option>
+      <option value="fahrenheit">Fahrenheit</option>
+    </select>
+
+    <button onclick="convertTemperature()">Convert</button>
+
+    <div class="output" id="result">
+      <!-- Converted temperature will appear here -->
+    </div>
+
+    <div class="note">
+      Want a challenge? Add Kelvin conversion too!
+    </div>
+  </div>
+
+  <script>
+    function convertTemperature() {
+      const temp = parseFloat(document.getElementById("temperature").value);
+      const unit = document.getElementById("unit").value;
+      const resultBox = document.getElementById("result");
+
+      if (isNaN(temp)) {
+        resultBox.textContent = "Please enter a valid number!";
+        return;
+      }
+
+      let convertedTemp;
+      let convertedUnit;
+
+      if (unit === "celsius") {
+        convertedTemp = (temp * 9 / 5) + 32;
+        convertedUnit = "Fahrenheit";
+      } else {
+        convertedTemp = (temp - 32) * 5 / 9;
+        convertedUnit = "Celsius";
+      }
+
+      resultBox.textContent = ${convertedTemp.toFixed(2)} °${convertedUnit};
+    }
+  </script>
+</body>
+</html>
